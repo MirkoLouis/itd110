@@ -23,7 +23,7 @@ const studentSchema = new mongoose.Schema({
         required: [true, 'cur_networth is required'],
         trim: true
     },
-    cur_course: {
+    cur_gpa: {
         type: Number,
         required: [true, 'cur_gpa is required'],
         trim: true

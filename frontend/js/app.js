@@ -41,13 +41,15 @@ function renderStudents(students) {
     noStudentsMsg.classList.add('hidden');
 
     students.forEach(student => {
+        const remark = student.cur_gpa <= 3? 'Passed' : 'Did not Pass';
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${escapeHtml(student.name)}</td>
             <td>${escapeHtml(student.email)}</td>
             <td>${escapeHtml(student.course)}</td>
-            <td>${escapeHtml(student.cur_networth)}</td>
+            <td>${escapeHtml('₱' + student.cur_networth)}</td>
             <td>${escapeHtml(student.cur_gpa)}</td>
+            <td>${escapeHtml(remark)}</td>
             <td>
                 <button class="btn-edit" onclick="editStudent('${student._id}')">Edit</button>
                 <button class="btn-delete" onclick="deleteStudent('${student._id}')">Delete</button>
@@ -135,7 +137,7 @@ async function deleteStudent(id) {
 function resetForm() {
     form.reset();
     studentIdInput.value = '';
-    isEditing = false;
+    isEditing = true;
     formTitle.textContent = 'Add New Student';
     submitBtn.textContent = 'Add Student';
     cancelBtn.classList.add('hidden');
