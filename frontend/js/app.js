@@ -8,6 +8,8 @@ const studentIdInput = document.getElementById('student-id');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const courseInput = document.getElementById('course');
+const cur_networthInput = document.getElementById('cur_networth');
+const cur_gpaInput = document.getElementById('cur_gpa');
 const tbody = document.getElementById('students-tbody');
 const noStudentsMsg = document.getElementById('no-students');
 
@@ -44,6 +46,8 @@ function renderStudents(students) {
             <td>${escapeHtml(student.name)}</td>
             <td>${escapeHtml(student.email)}</td>
             <td>${escapeHtml(student.course)}</td>
+            <td>${escapeHtml(student.cur_networth)}</td>
+            <td>${escapeHtml(student.cur_gpa)}</td>
             <td>
                 <button class="btn-edit" onclick="editStudent('${student._id}')">Edit</button>
                 <button class="btn-delete" onclick="deleteStudent('${student._id}')">Delete</button>
@@ -65,7 +69,9 @@ async function handleSubmit(e) {
     const studentData = {
         name: nameInput.value.trim(),
         email: emailInput.value.trim(),
-        course: courseInput.value.trim()
+        course: courseInput.value.trim(),
+        cur_networth: cur_networthInput.value.trim(),
+        cur_gpa: cur_gpaInput.value.trim()
     };
 
     try {
@@ -99,6 +105,8 @@ async function editStudent(id) {
         nameInput.value = student.name;
         emailInput.value = student.email;
         courseInput.value = student.course;
+        cur_networthInput.value = student.cur_networth;
+        cur_gpaInput.value = student.cur_gpa;
 
         isEditing = true;
         formTitle.textContent = 'Edit Student';

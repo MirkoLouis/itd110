@@ -26,8 +26,8 @@ const getStudent = async (req, res) => {
 // Create student
 const createStudent = async (req, res) => {
     try {
-        const { name, email, course } = req.body;
-        const student = await Student.create({ name, email, course });
+        const { name, email, course, cur_networth, cur_gpa } = req.body;
+        const student = await Student.create({ name, email, course, cur_networth, cur_gpa });
         res.status(201).json(student);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -37,10 +37,10 @@ const createStudent = async (req, res) => {
 // Update student
 const updateStudent = async (req, res) => {
     try {
-        const { name, email, course } = req.body;
+        const { name, email, course, cur_networth, cur_gpa } = req.body;
         const student = await Student.findByIdAndUpdate(
             req.params.id,
-            { name, email, course },
+            { name, email, course, cur_networth, cur_gpa },
             { new: true, runValidators: true }
         );
         if (!student) {
